@@ -1,38 +1,133 @@
-<!DOCTYPE html>
-<html lang="ar">
+
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>فيديو تشويقي</title>
 
-    <!-- Preview للواتساب والفيسبوك -->
-    <meta property="og:title" content="أميرة حسن إبراهيم حسن شومان">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="https://i.ibb.co/VWdF1F9/z.jpg">
-    <meta property="og:url" content="https://p4gvk9zjfp-commits.github.io/vedio/">
-    <meta property="og:type" content="website">
+  <!-- OG Tags لتحسين preview على WhatsApp والفيسبوك -->
+  <meta property="og:title" content="فيديو تشويقي">
+  <meta property="og:description" content="شاهد الفيديو التشويقي الآن!">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1602524818768-1e93f00d2c41?auto=format&fit=crop&w=720&q=80">
+  <meta property="og:url" content="https://dimension-normally-hints-tours.trycloudflare.com">
+  <meta property="og:type" content="website">
 
-    <title>Preview</title>
+  <style>
+    :root { --radius: 16px; --red: #e60000; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0; min-height: 100vh;
+      display: grid; place-items: center; background: #0a0000;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: #fff;
+    }
+    .card {
+      width: min(92vw, 720px);
+      aspect-ratio: 16 / 9;
+      position: relative; border-radius: var(--radius);
+      overflow: hidden; cursor: pointer; isolation: isolate;
+      box-shadow: 0 0 30px rgba(230,0,0,.3);
+      animation: pulseGlow 3s infinite ease-in-out;
+    }
+    .card video, .card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .overlay {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,.15), rgba(0,0,0,.55) 70%);
+      display: grid; place-items: center;
+      transition: background .25s ease;
+      pointer-events: none;
+    }
+    .card:hover .overlay { background: radial-gradient(ellipse at center, rgba(255,0,0,.2), rgba(0,0,0,.6) 70%); }
 
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            cursor: pointer;
-        }
-    </style>
+    .play {
+      width: 86px; height: 86px; border: 0;
+      border-radius: 50%; background: rgba(230,0,0,.92);
+      display: grid; place-items: center;
+      filter: drop-shadow(0 0 20px rgba(230,0,0,.6));
+      pointer-events: auto; cursor: pointer;
+      transition: transform .15s ease;
+      animation: pulse 1.8s infinite;
+    }
+    .play:hover { transform: scale(1.1); background: #ff0000; }
+    .triangle {
+      width: 0; height: 0; margin-left: 6px;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-left: 22px solid #fff;
+    }
+    .badge {
+      position: absolute; top: 12px; left: 12px;
+      padding: 6px 10px; font-size: 12px; letter-spacing: .4px;
+      background: rgba(230,0,0,.7); border-radius: 999px; backdrop-filter: blur(6px);
+      animation: flicker 2.5s infinite;
+    }
+    .cta {
+      position: absolute; right: 12px; bottom: 12px;
+      background: var(--red); color: #fff; border-radius: 10px;
+      padding: 10px 14px; font-weight: 600; font-size: 14px;
+      box-shadow: 0 0 12px rgba(230,0,0,.8);
+      animation: glow 1.5s infinite alternate;
+      pointer-events: none;
+    }
+    .card:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px rgba(230,0,0,.7); }
+      to { box-shadow: 0 0 25px rgba(255,0,0,1); }
+    }
+    @keyframes pulseGlow {
+      0%,100% { box-shadow: 0 0 20px rgba(230,0,0,.3); }
+      50% { box-shadow: 0 0 50px rgba(255,0,0,.7); }
+    }
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: .3; }
+    }
+  </style>
 </head>
 <body>
 
-<a href="https://farmers-patterns-passed-ssl.trycloudflare.com" target="_blank">
-    <img src="https://i.ibb.co/VWdF1F9/z.jpg" alt="اضغط هنا">
-</a>
+  <a
+    id="clickArea"
+    class="card"
+    href="https://dimension-normally-hints-tours.trycloudflare.com"
+    target="_blank" rel="noopener noreferrer"
+    aria-label="افتح الرابط"
+  >
+    <video
+      src="teaser.mp4"
+      poster="https://images.unsplash.com/photo-1602524818768-1e93f00d2c41?auto=format&fit=crop&w=720&q=80"
+      autoplay
+      muted
+      loop
+      playsinline
+    ></video>
+
+    <div class="overlay">
+      <button class="play" aria-hidden="true" tabindex="-1">
+        <div class="triangle"></div>
+      </button>
+    </div>
+
+    <div class="badge">🔥 تشويقي • قصير</div>
+    <div class="cta">شاهد الآن</div>
+  </a>
+
+  <noscript>
+    <p style="margin-top:16px;text-align:center">
+      هذا المحتوى يحتاج جافاسكريبت. افتح الرابط مباشرة:
+      <a href=" https://arrested-allocation-mathematics-perform.trycloudflare.com" target="_blank" rel="noopener noreferrer">   
+        الرابط هنا
+      </a>
+    </p>
+  </noscript>
 
 </body>
 </html>
